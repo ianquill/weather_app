@@ -1,3 +1,8 @@
+import {
+    processCurrentWeather, 
+    processForecast
+} from './jsonUtils';
+
 class WebInterface {
     constructor() {
         this.apiKey = '151980c4fdc5d6236c07e9ba3e28e614';
@@ -19,22 +24,21 @@ class WebInterface {
     }
 
     async getCurrentWeather(){
-        await fetch(this.buildURL(this.currentWeatherURL), {
+        let currentWeather = await fetch(this.buildURL(this.currentWeatherURL), {
             mode: 'cors'
-        })
-        .then(function(response) {
-            console.log(response.json());
         });
+        currentWeather = await currentWeather.json();
+        processCurrentWeather(currentWeather);
+        
     }
 
     async getForecast() {
-        await fetch(this.buildURL(this.forecastURL), {
+        let forecast = await fetch(this.buildURL(this.forecastURL), {
             mode: 'cors'
-        })
-        .then(function(response) {
-            console.log(response.json());
-        })
-    }
+        });
+        forecast = await forecast.json();
+        processForecast(forecast);
+    };
 }
 
 export default WebInterface;

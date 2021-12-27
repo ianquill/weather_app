@@ -1,5 +1,5 @@
 import './style.css';
-import WebInterface from './webInterface.js';
+import WebInterface from './webInterface';
 
 const body = document.body; 
 const hello = document.createElement('p');
