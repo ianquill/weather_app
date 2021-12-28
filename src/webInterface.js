@@ -10,7 +10,8 @@ class WebInterface {
         this.forecastURL = 'http://api.openweathermap.org/data/2.5/forecast?';
         this.location = '97202,us';
         this.locationType = 'zip';
-        
+        this.forecast;
+        this.currentWeather;
     }
 
     buildURL(requestURL){
@@ -28,8 +29,8 @@ class WebInterface {
             mode: 'cors'
         });
         currentWeather = await currentWeather.json();
-        processCurrentWeather(currentWeather);
-        
+        currentWeather = processCurrentWeather(currentWeather);
+        return currentWeather; 
     }
 
     async getForecast() {
@@ -37,7 +38,8 @@ class WebInterface {
             mode: 'cors'
         });
         forecast = await forecast.json();
-        processForecast(forecast);
+        forecast = processForecast(forecast);
+        return forecast;
     };
 }
 

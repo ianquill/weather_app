@@ -1,5 +1,6 @@
 import './style.css';
 import WebInterface from './webInterface';
+import updateFields from './userInterface';
 
 const body = document.body; 
 const hello = document.createElement('p');
@@ -14,10 +15,12 @@ function updateText() {
 }
 
 async function update() {
-    await webby.getCurrentWeather();
-    updateText();
-    await webby.getForecast(); 
-    updateText();
+    const currentWeather = await webby.getCurrentWeather();
+    console.log('currentWeather: ' + currentWeather);
+    updateFields(currentWeather);
+    const forecast = await webby.getForecast(); 
+    console.log('forecast: ' + forecast);
+    updateFields(forecast);
 }
 
 update();
