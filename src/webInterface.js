@@ -33,6 +33,7 @@ class WebInterface {
         return currentWeather; 
     }
 
+    // builds url for forecast request, querying the 7 day forecast API
     async getForecast() {
         let forecast = await fetch(this.buildURL(this.forecastURL), {
             mode: 'cors'

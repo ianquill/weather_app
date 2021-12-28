@@ -17,10 +17,9 @@ function updateText() {
 async function update() {
     const currentWeather = await webby.getCurrentWeather();
     console.log('currentWeather: ' + currentWeather);
-    updateFields(currentWeather);
     const forecast = await webby.getForecast(); 
     console.log('forecast: ' + forecast);
-    updateFields(forecast);
+    updateFields(currentWeather, forecast);
 }
 
 update();
