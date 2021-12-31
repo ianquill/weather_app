@@ -3,10 +3,6 @@ import WebInterface from './webInterface';
 import updateFields from './userInterface';
 
 const body = document.body; 
-const hello = document.createElement('p');
-hello.textContent = "Hello webpack!";
-
-body.appendChild(hello);
 
 const webby = new WebInterface();
 
