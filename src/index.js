@@ -6,10 +6,6 @@ const body = document.body;
 
 const webby = new WebInterface();
 
-function updateText() {
-    console.log('promise returned!');
-}
-
 async function update() {
     const currentWeather = await webby.getCurrentWeather();
     console.log('currentWeather: ' + currentWeather);

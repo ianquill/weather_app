@@ -11,7 +11,7 @@ export function processCurrentWeather(file) {
    console.log(file);
 
    const object = {
-       location: file.coord.lat.toString() + ' ' + file.coord.lon.toString(),
+       location: file.name,
        date: unixToDate(file.dt),
        temperature: Math.round(convertKelvintoF(file.main.temp)) + ' F',
        tempMax: Math.round(convertKelvintoF(file.main.temp_max)) + ' F high',

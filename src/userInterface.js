@@ -4,11 +4,15 @@ const search = document.querySelector('input');
 const currentWeatherContainer = document.getElementById('current-weather');
 const forecastContainer = document.getElementById('forecast');
 
+let searchIsValid = false;
+
 function parseSearch() {
     if (search.value.length == 5) {
         console.log('valid length zip code');
+        searchIsValid = true;
     } else {
         console.log('invalid input. try a zip code');
+        searchIsValid = false;
     }
 }
 
@@ -22,6 +26,7 @@ export default function updateFields(weather, forecast) {
         if (Object.hasOwnProperty.call(weather, key)) {
             const newText = document.createElement('p');
             newText.textContent = weather[key];
+            newText.class = key.toString();
 
             currentWeatherContainer.appendChild(newText);
         }

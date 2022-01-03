@@ -6,9 +6,9 @@ import {
 class WebInterface {
     constructor() {
         this.apiKey = '151980c4fdc5d6236c07e9ba3e28e614';
-        this.currentWeatherURL = 'http://api.openweathermap.org/data/2.5/weather?';
-        this.forecastURL = 'http://api.openweathermap.org/data/2.5/forecast?';
-        this.location = '97202,us';
+        this.currentWeatherURLPrefix = 'http://api.openweathermap.org/data/2.5/weather?';
+        this.forecastURLPrefix = 'http://api.openweathermap.org/data/2.5/forecast?';
+        this.location = '97202';
         this.locationType = 'zip';
         this.forecast;
         this.currentWeather;
@@ -25,7 +25,7 @@ class WebInterface {
     }
 
     async getCurrentWeather(){
-        let currentWeather = await fetch(this.buildURL(this.currentWeatherURL), {
+        let currentWeather = await fetch(this.buildURL(this.currentWeatherURLPrefix), {
             mode: 'cors'
         });
         currentWeather = await currentWeather.json();
@@ -35,7 +35,7 @@ class WebInterface {
 
     // builds url for forecast request, querying the 7 day forecast API
     async getForecast() {
-        let forecast = await fetch(this.buildURL(this.forecastURL), {
+        let forecast = await fetch(this.buildURL(this.forecastURLPrefix), {
             mode: 'cors'
         });
         forecast = await forecast.json();
