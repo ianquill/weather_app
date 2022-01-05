@@ -6,7 +6,8 @@ const search = document.querySelector('input');
 const currentWeatherContainer = document.getElementById('current-weather');
 const forecastContainer = document.getElementById('forecast');
 
-const webby = new WebInterface();
+let webby = new WebInterface('84098', 'zip'); // test 
+// get browser location on load and try to parse it
 
 async function update() {
     const currentWeather = await webby.getCurrentWeather();
@@ -22,6 +23,7 @@ update();
 function parseSearch() {
     if (search.value.length == 5) {
         console.log('valid length zip code');
+        webby = new WebInterface(search.value.toString(), 'zip') // temp with just zip
         update();
     } else {
         console.log('invalid input. try a zip code');
@@ -38,7 +40,8 @@ export default function updateFields(weather, forecast) {
         if (Object.hasOwnProperty.call(weather, key)) {
             const newText = document.createElement('p');
             newText.textContent = weather[key];
-            newText.class = key.toString();
+            // newText.class = key.toString();
+            newText.class = "test";
 
             currentWeatherContainer.appendChild(newText);
         }

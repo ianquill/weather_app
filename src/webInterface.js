@@ -4,12 +4,12 @@ import {
 } from './jsonUtils';
 
 class WebInterface {
-    constructor() {
+    constructor(location, locType) {
         this.apiKey = '151980c4fdc5d6236c07e9ba3e28e614';
         this.currentWeatherURLPrefix = 'http://api.openweathermap.org/data/2.5/weather?';
         this.forecastURLPrefix = 'http://api.openweathermap.org/data/2.5/forecast?';
-        this.location = '97202';
-        this.locationType = 'zip';
+        this.location = location;
+        this.locationType = locType;
         this.forecast;
         this.currentWeather;
     }
