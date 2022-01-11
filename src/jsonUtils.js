@@ -1,5 +1,5 @@
 function convertKelvintoF(temp) {
-    return (temp * 9/5 -459.67);
+    return (temp * 9/5 - 459.67);
 }
 
 function unixToDate(date) {
@@ -7,10 +7,10 @@ function unixToDate(date) {
     return new Date(ms).toLocaleString();
 }
 
-export function processCurrentWeather(file) {
+export function processWeather(file) {
    console.log(file);
 
-   const object = {
+   const weatherData = {
        location: file.name,
        date: unixToDate(file.dt),
        temperature: Math.round(convertKelvintoF(file.main.temp)) + ' F',
@@ -21,7 +21,7 @@ export function processCurrentWeather(file) {
        weather: file.weather[0].main
    };
 
-   return object;
+   return weatherData;
     
 }
 
