@@ -5,26 +5,22 @@ const form = document.querySelector('form');
 const search = document.querySelector('input');
 const weatherContainer = document.getElementById('current-weather');
 const forecastContainer = document.getElementById('forecast');
-let location;
-let locationRetrieved;
 
 initialLoad();
 
 function getGeoLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(successfulLocation);
-    } else {
-        console.log('else triggered');
     }
 }
 
+// callback function runs after location access has been approved by the user / browser
 function successfulLocation(pos) {
-  let crd = pos.coords;
+  let crd = { lat: pos.coords.latitude, lng: pos.coords.longitude };
 
   console.log('Your current position is:');
-  console.log(`Latitude : ${crd.latitude}`);
-  console.log(`Longitude: ${crd.longitude}`);
-  console.log(`More or less ${crd.accuracy} meters.`);
+  console.log(`Latitude : ${crd.lat}`);
+  console.log(`Longitude: ${crd.lng}`);
 
   update(crd);
 }
@@ -32,7 +28,6 @@ function successfulLocation(pos) {
 // refresh fields in UI
 async function update(location) {
     const weather = await getWeather(location);
-    console.log('weather: ' + weather);
     // updateFields(weather, forecast);
 }
 
@@ -43,17 +38,12 @@ function initialLoad() {
 
 
 function parseSearch() {
-    if (search.value.length == 5) {
-        console.log('valid length zip code');
-        webInterface = new WebInterface(search.value.toString(), 'zip') // temp with just zip
-        update();
-    } else {
-        console.log('invalid input. try a zip code');
-    }
+
 }
 
-search.addEventListener('input', () => {
-    parseSearch();
+search.addEventListener('input', async () => {
+    const location = await geocodeLocation(search.value);
+    update(location);
 })
 
 export default function updateFields(weather, forecast) {
