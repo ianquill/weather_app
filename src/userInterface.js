@@ -1,4 +1,4 @@
-import { geocodeLocation, getWeather } from "./webInterface";
+import { reverseGeocode, geocodeLocation, getWeather } from "./webInterface";
 
 const body = document.body;
 const form = document.querySelector('form');
@@ -43,8 +43,9 @@ function successfulLocation(pos) {
 // refresh fields in UI
 async function update(location) {
     const weather = await getWeather(location);
+    const locationName = await reverseGeocode(location);
     console.log('got weather');
-    updateFields(weather);
+    updateFields(weather, locationName);
 }
 
 function initialLoad() {
@@ -56,14 +57,15 @@ search.addEventListener('input', async () => {
     update(location);
 })
 
-export default async function updateFields(weather) {
+export default async function updateFields(weather, locationName) {
     console.log('updatingFields');
     const current = weather[0];
     const daily = weather[1];
     const hourly = weather[2];
 
     const dateTime = current.date.split(',');
-
+    console.log(locationName);
+    currentLocation.textContent = locationName.results[0].address_components.city;
     currentTime.textContent = dateTime[0];
     currentDate.textContent = dateTime[1];
     currentTemp.textContent = current.temperature;

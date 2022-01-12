@@ -1,16 +1,27 @@
 import { processWeather } from './jsonUtils';
 
+const geocodioAPIKey = '7519e63fd677e57886d8c3a7dcf17e7c3f57178';
 // fetch and return latitude and longitude of entered location 
 export async function geocodeLocation(location) {
     console.log("geocoding location: " + location);
-    const apiKey = '7519e63fd677e57886d8c3a7dcf17e7c3f57178';
-    let data = await fetch(`https://api.geocod.io/v1.7/geocode?q=${location}&api_key=${apiKey}`, { 
+    let data = await fetch(`https://api.geocod.io/v1.7/geocode?q=${location}&api_key=${geocodioAPIKey}`, { 
         mode: 'cors' 
     });
     data = await data.json();
     const coordinates = data.results[0].location;
     console.log(coordinates);
     return coordinates;
+}
+
+export async function reverseGeocode(location) {
+    console.log("reverse geocoding location");
+    console.log(location);
+    const locationString = (location.lat + ',' + location.lng);
+    let data = await fetch(`https://api.geocod.io/v1.7/reverse?q=${locationString}&api_key=${geocodioAPIKey}`, {
+        mode: 'cors'
+    });
+    data = await data.json();
+    return data;
 }
 
 export async function getWeather(location){
