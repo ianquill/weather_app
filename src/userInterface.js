@@ -19,7 +19,7 @@ const currentPressure = document.getElementById('current-pressure');
 const currentConditions = document.getElementById('current-conditions');
 const currentIcon = document.getElementById('current-icon');
 currentLocation.textContent = "ass balls";
-currentWeatherContainer.style.visibility = 'visible';
+currentWeatherContainer.style.visibility = 'hidden';
 
 initialLoad();
 
@@ -56,20 +56,29 @@ search.addEventListener('input', async () => {
     update(location);
 })
 
-export default function updateFields(weather) {
+export default async function updateFields(weather) {
     console.log('updatingFields');
     const current = weather[0];
     const daily = weather[1];
     const hourly = weather[2];
 
-    currentTime.textContent = current.date;
-    currentDate.textContent = current.date;
+    const dateTime = current.date.split(',');
+
+    currentTime.textContent = dateTime[0];
+    currentDate.textContent = dateTime[1];
     currentTemp.textContent = current.temperature;
     currentHigh.textContent = daily[0].tempMax;
     currentLow.textContent = daily[0].tempMin;
     currentPressure.textContent = current.pressure;
     currentConditions.textContent = current.weather;
+    console.log(currentIcon);
+    currentIcon.onload = () => {
+        console.log('image successfully loaded');
+        currentWeatherContainer.style.visibility = 'visible';
+    }
     currentIcon.src = `http://openweathermap.org/img/wn/${current.icon}@4x.png`;
     // icon needs to be loaded, etc.
 
+
 };
+
