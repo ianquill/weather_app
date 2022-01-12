@@ -35,12 +35,6 @@ function initialLoad() {
     getGeoLocation();
 }
 
-
-
-function parseSearch() {
-
-}
-
 search.addEventListener('input', async () => {
     const location = await geocodeLocation(search.value);
     update(location);

@@ -1,13 +1,15 @@
 # Todo
+CURRENTLY: editing processWeather, etc. to be compatible with the onecall api
 
-[ ] - parse EACH TYPE OF search input -> update
+[x] - parse search input
     [ ] - updates existing fields, doesn't create new ones unless they don't currently exist
-[ ] - switch to one-call API?
-    [ ] - get location via location API 
-    [ ] - positionstack API convert to lat lon
-        -- maybe geocodio instead because of lack of https support
+        [ ] - fetch icons from weather data
+    [ ] - if manually entered, use location name from geocodio instead of from weather API
+[x] - switch to one-call API?
+    [x] - get location via location API 
+    [x] - geocodio API convert to lat lon
     [ ] - hourly and daily fields
 [ ] - add AQI API call
 [ ] - animate color change of background for weather changes?
 [x] - front end design
-[x] - build forecast functions
+    [ ] - implement css
