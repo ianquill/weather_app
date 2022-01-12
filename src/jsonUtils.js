@@ -18,7 +18,6 @@ export function processWeather(file) {
    const currentWeather = {
        // send this as another argument from geocodio?
        // location: file.name,
-       alerts: file.alerts[0].event,  
        date: unixToDate(current.dt),
        sunrise: unixToDate(current.sunrise),
        sunset: unixToDate(current.sunset),
@@ -28,7 +27,12 @@ export function processWeather(file) {
        humidity: current.humidity + '% humidity',
        weather: current.weather[0].main,
        icon: current.weather[0].icon
-   };
+   }
+
+   if (file.alerts) {
+    currentWeather.alerts = file.alerts[0].event;  
+
+   }
 
    const daily = file.daily;
    const dailyWeather = [];

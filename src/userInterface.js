@@ -3,8 +3,23 @@ import { geocodeLocation, getWeather } from "./webInterface";
 const body = document.body;
 const form = document.querySelector('form');
 const search = document.querySelector('input');
-const weatherContainer = document.getElementById('current-weather');
 const forecastContainer = document.getElementById('forecast');
+
+// *** SETUP CURRENT WEATHER ***
+const currentWeatherContainer = document.getElementById('current-weather');
+// temporarily disable currentWeatherContainer (maybe start w/ it like this)
+// currentWeatherContainer.style.visibility = 'hidden';
+const currentLocation = document.getElementById('current-location');
+const currentTime = document.getElementById('current-time');
+const currentDate = document.getElementById('current-date');
+const currentTemp = document.getElementById('current-temperature');
+const currentHigh = document.getElementById('current-high');
+const currentLow = document.getElementById('current-low');
+const currentPressure = document.getElementById('current-pressure');
+const currentConditions = document.getElementById('current-conditions');
+const currentIcon = document.getElementById('current-icon');
+currentLocation.textContent = "ass balls";
+currentWeatherContainer.style.visibility = 'visible';
 
 initialLoad();
 
@@ -16,7 +31,7 @@ function getGeoLocation() {
 
 // callback function runs after location access has been approved by the user / browser
 function successfulLocation(pos) {
-  let crd = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+  const crd = { lat: pos.coords.latitude, lng: pos.coords.longitude };
 
   console.log('Your current position is:');
   console.log(`Latitude : ${crd.lat}`);
@@ -28,7 +43,8 @@ function successfulLocation(pos) {
 // refresh fields in UI
 async function update(location) {
     const weather = await getWeather(location);
-    // updateFields(weather, forecast);
+    console.log('got weather');
+    updateFields(weather);
 }
 
 function initialLoad() {
@@ -40,31 +56,20 @@ search.addEventListener('input', async () => {
     update(location);
 })
 
-export default function updateFields(weather, forecast) {
-    // update current weather elements
-    for (const key in weather) {
-        if (Object.hasOwnProperty.call(weather, key)) {
-            const newText = document.createElement('p');
-            newText.textContent = weather[key];
-            // newText.class = key.toString();
-            newText.class = "test";
+export default function updateFields(weather) {
+    console.log('updatingFields');
+    const current = weather[0];
+    const daily = weather[1];
+    const hourly = weather[2];
 
-            weatherContainer.appendChild(newText);
-        }
-    }
+    currentTime.textContent = current.date;
+    currentDate.textContent = current.date;
+    currentTemp.textContent = current.temperature;
+    currentHigh.textContent = daily[0].tempMax;
+    currentLow.textContent = daily[0].tempMin;
+    currentPressure.textContent = current.pressure;
+    currentConditions.textContent = current.weather;
+    currentIcon.src = `http://openweathermap.org/img/wn/${current.icon}@4x.png`;
+    // icon needs to be loaded, etc.
 
-    // update forecast (currently displays all data points)
-    forecast.forEach(element => {
-        const forecastCard = document.createElement('div');
-        forecastCard.id = 'forecast-card';
-        for (const key in element) {
-            if (Object.hasOwnProperty.call(element, key)) {
-                const newText = document.createElement('p');
-                newText.textContent = element[key];
-
-                forecastCard.appendChild(newText);
-            }
-        }
-        forecastContainer.appendChild(forecastCard);
-    });
 };
