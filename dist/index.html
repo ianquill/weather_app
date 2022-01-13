@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Weather_App</title>
     <script src="bundle.js" defer></script>
 </head>
 <body>
@@ -13,17 +13,17 @@
         <input id="search-bar" is='location'>
     </form>
     <div id="main">
-        <div id="main-right">
+        <div id="main-left">
             <div id="current-weather">
                 <div id="current-text">
                     <h2 id="current-location">Location Name, US</h1>
                     <h3 id="current-time">12:00 pm</h3>
                     <h4 class="current-small" id="current-date">Jan 12, 2022</h4>
                     <div id="current-temps">
-                        <h1 id="current-temperature">27º F</h1>
+                        <h1 id="current-temperature">27 ºF</h1>
                         <div id="current-highlow">
-                            <h4 class="current-small" id="current-high"><b>33º F</b> high</h4>
-                            <h4 class="current-small" id="current-low"><b>24º F</b> low</h4>
+                            <h4 class="current-small" id="current-high"><b>33 ºF</b> high</h4>
+                            <h4 class="current-small" id="current-low"><b>24 ºF</b> low</h4>
                         </div>
                     </div>
                     <h4 class="current-small" id="current-pressure">1234 hPa</h4>
@@ -34,17 +34,32 @@
                     <img id="current-icon">
                 </div>
             </div>
-        </div>
-        <div id="main-left">
-            
-        </div>
-        <div id="daily">
-            <div class="day-container">
-                <img class="day-icon">
-                
+            <div id="hourly">
+                <!-- <div class="hour-container">
+                    <h3 class="hour-time">1:00 PM</h3>
+                    <div class="hour-temps">
+                        <h4 class="hour-small">34 ºF high</h4>
+                        <h4 class="hour-small">22 ºF low</h4>
+                    </div>
+                    <h3 class="hour-humidity"></h3>
+                    <h3 class="hour-conditions">Cloudy</h3>
+                    <img class="hour-icon">
+                </div> -->
             </div>
         </div>
-        <div id="hourly"></div>
+        <div id="main-right">
+            <div id="daily">
+                <!-- <div class="day-container">
+                    <img class="day-icon">
+                    <div class="day-text">
+                        <h4 class="day-date, day-small">1:00 PM | <b>Jan 6</b></Jan></h4>
+                        <h1 class="day-temperature">39 ºF</h1>
+                        <h4 class="day-description">snow</h4>
+                    </div>
+                     
+                </div> -->
+            </div>
+        </div>
     </div>
 </body>
 </html>
