@@ -63,6 +63,32 @@ input {
     padding: 10px;
     display: flex;
     justify-content: space-between;
+    margin: 10px;
+}
+
+#section-label {
+    align-self: center;
+    color: white;
+    transform: translateY(50px);
+}
+
+
+#current-text {
+    padding: 20px;
+}
+
+#current-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#current-location {
+    margin: 0;
+}
+
+#current-time {
+    margin: 0;
 }
 
 .current-small {
@@ -86,6 +112,10 @@ input {
     margin: 0;
 }
 
+#current-conditions {
+    font-weight: bold;
+}
+
 .weather-text {
     filter: none;
 }
@@ -98,4 +128,9 @@ input {
     border: 1px solid black;
     border-radius: 25px;
     padding: 10px;
+}
+
+.day-container {
+    border: 2px solid white;
+    border-radius: 25px;
 }

@@ -3,7 +3,6 @@ import { reverseGeocode, geocodeLocation, getWeather } from "./webInterface";
 const body = document.body;
 const form = document.querySelector('form');
 const search = document.querySelector('input');
-const forecastContainer = document.getElementById('forecast');
 
 // *** SETUP CURRENT WEATHER ***
 const currentWeatherContainer = document.getElementById('current-weather');
@@ -20,6 +19,9 @@ const currentConditions = document.getElementById('current-conditions');
 const currentIcon = document.getElementById('current-icon');
 currentLocation.textContent = "ass balls";
 currentWeatherContainer.style.visibility = 'hidden';
+
+// *** SETUP DAILY ***
+const dailyWeatherContainer = document.getElementById('daily');
 
 initialLoad();
 
@@ -65,7 +67,9 @@ export default async function updateFields(weather, locationName) {
 
     const dateTime = current.date.split(',');
     console.log(locationName);
-    currentLocation.textContent = locationName.results[0].address_components.city;
+    currentLocation.textContent = (
+        locationName.results[0].address_components.city + ', ' +
+        locationName.results[0].address_components.country);
     currentTime.textContent = dateTime[0];
     currentDate.textContent = dateTime[1];
     currentTemp.textContent = current.temperature;

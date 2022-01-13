@@ -21,7 +21,7 @@ export function processWeather(file) {
        date: unixToDate(current.dt),
        sunrise: unixToDate(current.sunrise),
        sunset: unixToDate(current.sunset),
-       temperature: Math.round(convertKelvintoF(current.temp)) + ' F',
+       temperature: Math.round(convertKelvintoF(current.temp)) + 'º F',
        feelsLike: Math.round(convertKelvintoF(current.feels_like)) + ' F',
        pressure: current.pressure + ' hPa',
        humidity: current.humidity + '% humidity',
@@ -42,8 +42,8 @@ export function processWeather(file) {
        const dayForecast = {
            date: unixToDate(daily[i].dt),
            temperature: Math.round(convertKelvintoF(daily[i].temp.day)),
-           tempMax: Math.round(convertKelvintoF(daily[i].temp.max)),
-           tempMin: Math.round(convertKelvintoF(daily[i].temp.min)),
+           tempMax: Math.round(convertKelvintoF(daily[i].temp.max)) + 'º high',
+           tempMin: Math.round(convertKelvintoF(daily[i].temp.min)) + 'º low',
            pressure: daily[i].pressure,
            weather: daily[i].weather[0].main,
            icon: daily[i].weather[0].icon

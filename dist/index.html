@@ -13,24 +13,38 @@
         <input id="search-bar" is='location'>
     </form>
     <div id="main">
-        <div id="current-weather">
-            <div id="current-text">
-                <h2 id="current-location">Location Name, US</h1>
-                <h3 id="current-time">12:00 pm</h3>
-                <h4 class="current-small" id="current-date">Jan 12, 2022</h4>
-                <div id="current-temps">
-                    <h1 id="current-temperature">27º F</h1>
-                    <div id="current-highlow">
-                        <h4 class="current-small" id="current-high"><b>33º F</b> high</h4>
-                        <h4 class="current-small" id="current-low"><b>24º F</b> low</h4>
+        <div id="main-right">
+            <div id="current-weather">
+                <div id="current-text">
+                    <h2 id="current-location">Location Name, US</h1>
+                    <h3 id="current-time">12:00 pm</h3>
+                    <h4 class="current-small" id="current-date">Jan 12, 2022</h4>
+                    <div id="current-temps">
+                        <h1 id="current-temperature">27º F</h1>
+                        <div id="current-highlow">
+                            <h4 class="current-small" id="current-high"><b>33º F</b> high</h4>
+                            <h4 class="current-small" id="current-low"><b>24º F</b> low</h4>
+                        </div>
                     </div>
+                    <h4 class="current-small" id="current-pressure">1234 hPa</h4>
+                    <h4 class="current-small" id="current-conditions"><b>Partly Cloudy</b></h4>
                 </div>
-                <h4 class="current-small" id="current-pressure">1234 hPa</h4>
-                <h4 class="current-small" id="current-conditions"><b>Partly Cloudy</b></h4>
+                <div id="current-right">
+                    <h3 id="section-label">Current Conditions</h3>
+                    <img id="current-icon">
+                </div>
             </div>
-            <img id="current-icon">
         </div>
-        <div id="forecast"></div>
+        <div id="main-left">
+            
+        </div>
+        <div id="daily">
+            <div class="day-container">
+                <img class="day-icon">
+                
+            </div>
+        </div>
+        <div id="hourly"></div>
     </div>
 </body>
 </html>
