@@ -1,23 +1,14 @@
 import { reverseGeocode, geocodeLocation, getWeather } from "./webInterface";
 
-const body = document.body;
+const main = document.getElementById('main');
+const mainLeft = document.getElementById('main-left');
+const mainRight = document.getElementById('main-right');
 const form = document.querySelector('form');
 const search = document.querySelector('input');
 
 // *** SETUP CURRENT WEATHER ***
 const currentWeatherContainer = document.getElementById('current-weather');
-// temporarily disable currentWeatherContainer (maybe start w/ it like this)
-// currentWeatherContainer.style.visibility = 'hidden';
-const currentLocation = document.getElementById('current-location');
-const currentTime = document.getElementById('current-time');
-const currentDate = document.getElementById('current-date');
-const currentTemp = document.getElementById('current-temperature');
-const currentHigh = document.getElementById('current-high');
-const currentLow = document.getElementById('current-low');
-const currentPressure = document.getElementById('current-pressure');
-const currentConditions = document.getElementById('current-conditions');
-const currentIcon = document.getElementById('current-icon');
-currentLocation.textContent = "ass balls";
+currentWeatherContainer.classList.add('card');
 currentWeatherContainer.style.visibility = 'hidden';
 
 // *** SETUP DAILY ***
@@ -64,14 +55,60 @@ search.addEventListener('keydown', async (e) => {
     }
 })
 
+function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
+
 export default async function updateFields(weather, locationName) {
+    removeAllChildNodes(currentWeatherContainer);
+    removeAllChildNodes(hourlyWeatherContainer);
+    removeAllChildNodes(dailyWeatherContainer);
+
     console.log('updatingFields');
     const current = weather[0];
     const daily = weather[1];
     const hourly = weather[2];
 
     // current
+
+    // *** CHANGE THESE IN CSS TO CLASSES 
+    const currentTextContainer = document.createElement('div');
+    currentTextContainer.classList.add('current-text');
+    const currentLocation = document.createElement('h2');
+    currentLocation.classList.add('current-location');
+    const currentTime = document.createElement('h3');
+    currentTime.classList.add('current-time');
+    const currentDate = document.createElement('h4');
+    currentDate.classList.add('current-date', 'current-small');
+    const currentTempsContainer = document.createElement('div');
+    currentTempsContainer.classList.add('current-temps');
+    const currentTemp = document.createElement('h1');
+    currentTemp.classList.add('current-temperature');
+    const currentHighLow = document.createElement('div');
+    currentHighLow.classList.add('current-highlow');  
+    const currentHigh = document.createElement('div');
+    currentHigh.classList.add('current-high');
+    const currentLow = document.createElement('div');
+    currentLow.classList.add('current-low');
+    const currentPressure = document.createElement('div');
+    currentPressure.classList.add('current-pressure');
+    const currentConditions = document.createElement('div');
+    currentConditions.classList.add('current-conditions');
+    const currentIcon = document.createElement('img');
+    currentIcon.classList.add('current-icon');
+    currentIcon.src = `http://openweathermap.org/img/wn/${current.icon}@4x.png`;
+    const currentRight = document.createElement('div');
+    currentRight.classList.add('current-right');
+    const sectionLabel = document.createElement('h3');
+    sectionLabel.classList.add('section-label');
+    sectionLabel.textContent = "Current Conditions:";
+
+
     const dateTime = current.date.split(',');
+
+
     console.log(locationName);
     currentLocation.textContent = (
         locationName.results[0].address_components.city + ', ' +
@@ -88,8 +125,17 @@ export default async function updateFields(weather, locationName) {
     currentIcon.onload = () => {
         console.log('image successfully loaded');
         currentWeatherContainer.style.visibility = 'visible';
+
+        currentHighLow.append(currentHigh, currentLow);
+        currentTempsContainer.append(currentTemp, currentHighLow);
+        currentTextContainer.append(currentLocation, currentTime, currentDate, currentTempsContainer, currentPressure, currentConditions);
+        currentRight.append(sectionLabel, currentIcon);
+        currentWeatherContainer.append(currentTextContainer, currentRight);
+        
+
     }
-    currentIcon.src = `http://openweathermap.org/img/wn/${current.icon}@4x.png`;
+
+
 
     // hourly
     for (let j = 0; j< hourly.length; j++) {
@@ -97,7 +143,7 @@ export default async function updateFields(weather, locationName) {
         icon.classList.add('hour-icon');
         icon.src = `http://openweathermap.org/img/wn/${hourly[j].icon}.png`;
         const container = document.createElement('div');
-        container.classList.add('hour-container');
+        container.classList.add('hour-container', 'card');
         const time = document.createElement('h3');
         time.classList.add('hour-time');
         const temp = document.createElement('h3');
@@ -125,7 +171,7 @@ export default async function updateFields(weather, locationName) {
     for (let i = 0; i < daily.length; i++) {
         // setup daily template
         const container = document.createElement('div');
-        container.classList.add('day-container');
+        container.classList.add('day-container', 'card');
         const icon = new Image();
         icon.src = `http://openweathermap.org/img/wn/${daily[i].icon}@4x.png`;
         icon.classList.add('day-icon');
@@ -138,13 +184,22 @@ export default async function updateFields(weather, locationName) {
         temp.classList.add('day-temperature');
         const conditions = document.createElement('h4');
         conditions.classList.add('day-description');
+        const tempHigh = document.createElement('h4');
+        tempHigh.classList.add('day-high', 'day-small');
+        const tempLow = document.createElement('h4');
+        tempLow.classList.add('day-low', 'day-small');
+        const highLowContainer = document.createElement('div');
+        highLowContainer.classList.add('day-highlow');
 
         date.textContent = daily[i].date.split(', ')[0];
         temp.textContent = daily[i].temperature;
+        tempHigh.textContent = daily[i].tempMax;
+        tempLow.textContent = daily[i].tempMin;
         conditions.textContent = daily[i].weather;
 
+        highLowContainer.append(tempHigh, tempLow);
         textContainer.append(date, temp, conditions);
-        container.append(icon, textContainer);
+        container.append(icon, textContainer, highLowContainer);
         dailyWeatherContainer.appendChild(container);
     }
 };

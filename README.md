@@ -1,8 +1,8 @@
 # Todo
-CURRENTLY: cleaning up hourly + daily formatting while tackling overall CSS
+CURRENTLY: 
 
-[ ] - add state to current location
-[ ] - changing locations makes new DOM elements for hourly and daily; fix it
+[x] - add state to current location
+[x] - changing locations makes new DOM elements for hourly and daily; fix it
 [x] - parse search input
     [x] - updates existing fields, doesn't create new ones unless they don't currently exist
     [?] - process date with Date/Time API?
@@ -15,5 +15,5 @@ CURRENTLY: cleaning up hourly + daily formatting while tackling overall CSS
 [?] - add AQI API call (if more info needed somewhere)
 [?] - animate color change of background for weather changes?
 [x] - front end design
-    [ ] - implement css
+    [~] - implement css
 [ ] - build proper timeline, start with search bar, wait until everything is loaded before presenting it to the user

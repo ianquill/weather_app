@@ -57,6 +57,10 @@ input {
     margin: 10px;
 }
 
+.card:hover {
+    filter: brightness(0.9)
+}
+
 #main {
     display: flex;
     justify-content: center;
@@ -67,7 +71,7 @@ input {
 #current-weather {
     /* width: 25vw; */
     border: 2px solid white;
-    filter: drop-shadow(89px 90px 1px rgba(0, 0, 0, 0.25));
+    /* filter: drop-shadow(89px 90px 1px rgba(0, 0, 0, 0.25)); */
     border-radius: 25px;
     padding: 10px;
     display: flex;
@@ -75,14 +79,14 @@ input {
     margin: 10px;
 }
 
-#section-label {
+.section-label {
     align-self: center;
     color: white;
     transform: translateY(50px);
 }
 
 
-#current-text {
+.current-text {
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -90,17 +94,17 @@ input {
     justify-content: center;
  }
 
-#current-right {
+.current-right {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
 }
 
-#current-location {
+.current-location {
     margin: 0;
 }
 
-#current-time {
+.current-time {
     margin: 0;
 }
 
@@ -109,24 +113,24 @@ input {
     margin: 4px;
 }
 
-#current-temps {
+.current-temps {
     display: flex;
 }
 
-#current-highlow {
+.current-highlow {
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin: 0 10px;
 }
 
-#current-temperature {
+.current-temperature {
     font-weight: 900;
     font-size: 64px;
     margin: 0;
 }
 
-#current-conditions {
+.current-conditions {
     font-weight: bold;
 }
 
@@ -138,7 +142,7 @@ input {
     color: red;
 }
 
-#main-right {
+.main-right {
     /* width: 25vw; */
 }
 
@@ -192,4 +196,15 @@ input {
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+.day-highlow {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.day-small {
+    margin: 0;
 }

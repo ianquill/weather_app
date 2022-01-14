@@ -41,7 +41,7 @@ export function processWeather(file) {
    for (let i = 0; i < daily.length; i++) {
        const dayForecast = {
            date: unixToDate(daily[i].dt),
-           temperature: Math.round(convertKelvintoF(daily[i].temp.day)),
+           temperature: Math.round(convertKelvintoF(daily[i].temp.day)) + 'º F ',
            tempMax: Math.round(convertKelvintoF(daily[i].temp.max)) + 'º high',
            tempMin: Math.round(convertKelvintoF(daily[i].temp.min)) + 'º low',
            pressure: daily[i].pressure,
@@ -57,7 +57,7 @@ export function processWeather(file) {
    for (let i = 0; i < hourly.length; i++) {
         const hourForecast = {
             time: unixToDate(hourly[i].dt),
-            temperature: hourly[i].temp + ' ºF',
+            temperature: Math.round(convertKelvintoF(hourly[i].temp)) + ' ºF',
             humidity: hourly[i].humidity,
             weather: hourly[i].weather[0].main,
             icon: hourly[i].weather[0].icon
