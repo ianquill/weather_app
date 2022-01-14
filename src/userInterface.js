@@ -75,6 +75,7 @@ export default async function updateFields(weather, locationName) {
     console.log(locationName);
     currentLocation.textContent = (
         locationName.results[0].address_components.city + ', ' +
+        locationName.results[0].address_components.state + ' ' +
         locationName.results[0].address_components.country);
     currentTime.textContent = dateTime[0];
     currentDate.textContent = dateTime[1];
