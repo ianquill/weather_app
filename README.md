@@ -1,6 +1,8 @@
 # Todo
 CURRENTLY: cleaning up hourly + daily formatting while tackling overall CSS
 
+[ ] - add state to current location
+[ ] - changing locations makes new DOM elements for hourly and daily; fix it
 [x] - parse search input
     [x] - updates existing fields, doesn't create new ones unless they don't currently exist
     [?] - process date with Date/Time API?

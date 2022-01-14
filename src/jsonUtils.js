@@ -57,7 +57,7 @@ export function processWeather(file) {
    for (let i = 0; i < hourly.length; i++) {
         const hourForecast = {
             time: unixToDate(hourly[i].dt),
-            temperature: hourly[i].temp,
+            temperature: hourly[i].temp + ' ºF',
             humidity: hourly[i].humidity,
             weather: hourly[i].weather[0].main,
             icon: hourly[i].weather[0].icon

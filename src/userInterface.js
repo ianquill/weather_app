@@ -57,9 +57,11 @@ function initialLoad() {
     getGeoLocation();
 }
 
-search.addEventListener('input', async () => {
-    const location = await geocodeLocation(search.value);
-    update(location);
+search.addEventListener('keydown', async (e) => {
+    if (e.code === "Enter") {
+        const location = await geocodeLocation(search.value);
+        update(location);
+    }
 })
 
 export default async function updateFields(weather, locationName) {
@@ -124,7 +126,8 @@ export default async function updateFields(weather, locationName) {
         const container = document.createElement('div');
         container.classList.add('day-container');
         const icon = new Image();
-        icon.src = `http://openweathermap.org/img/wn/${daily[i].icon}@2x.png`;
+        icon.src = `http://openweathermap.org/img/wn/${daily[i].icon}@4x.png`;
+        icon.classList.add('day-icon');
 
         const textContainer = document.createElement('div');
         textContainer.classList.add('day-text');
@@ -135,7 +138,7 @@ export default async function updateFields(weather, locationName) {
         const conditions = document.createElement('h4');
         conditions.classList.add('day-description');
 
-        date.textContent = daily[i].date;
+        date.textContent = daily[i].date.split(', ')[0];
         temp.textContent = daily[i].temperature;
         conditions.textContent = daily[i].weather;
 

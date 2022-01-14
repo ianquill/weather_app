@@ -41,6 +41,13 @@ body {
     color: var(--text-color);
 }
 
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px;
+}
+
 p {
     font-family: 'Roboto', Helvetica;
     font-size: 28px;
@@ -52,11 +59,12 @@ input {
 
 #main {
     display: flex;
+    justify-content: center;
 }
 
 /* figure out the drop shadow */
 #current-weather {
-    width: 25vw;
+    /* width: 25vw; */
     border: 2px solid white;
     /* filter: drop-shadow(89px 90px 1px rgba(0, 0, 0, 0.25)); */
     border-radius: 25px;
@@ -75,6 +83,10 @@ input {
 
 #current-text {
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
 }
 
 #current-right {
@@ -104,6 +116,7 @@ input {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin: 0 10px;
 }
 
 #current-temperature {
@@ -125,11 +138,13 @@ input {
 }
 
 #main-right {
-    width: 25vw;
+    /* width: 25vw; */
 }
 
 .hour-container {
     display: flex;
+    justify-content: space-evenly;
+    align-items: center;
     border: 2px solid white;
     border-radius: 40px;
     margin: 20px; 
@@ -144,9 +159,36 @@ input {
 .day-container {
     border: 2px solid white;
     border-radius: 25px;
+    margin: 10px;
+    /* temporary? */
+    width: 400px;
+    display: flex;
 }
 
 .day-small {
     font-size: 16px;
     font-weight: lighter;
+}
+
+.day-icon {
+    width: 100px;
+    height: 100px;
+}
+
+.day-date {
+    margin: 0; 
+}
+
+.day-temperature {
+    margin: 0;
+}
+
+.day-description {
+    margin: 0;
+}
+
+.day-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
